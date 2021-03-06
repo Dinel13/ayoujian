@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { siswaLogin, guruLogin } from "../store/action/AuthAction";
 import back from "../image/back.svg";
 
+/*
+this componnet to login both for siswa or guru
+input props.from ? guru : siswa
+*/
+
 const Login = (props) => {
+  const dispatch = useDispatch();
+  const { register, errors, handleSubmit } = useForm();
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = (values) => {
+    props.from === "guru"
+      ? dispatch(
+          guruLogin(values.email, values.password, setError, setIsLoading)
+        )
+      : dispatch(
+          siswaLogin(values.email, values.password, setError, setIsLoading)
+        );
+  };
+
   return (
     <section className="absolute w-full h-full">
       <div
@@ -26,7 +50,7 @@ const Login = (props) => {
                 <hr className="mt-6 border-b-1 border-gray-400" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-6 pt-0">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -35,11 +59,24 @@ const Login = (props) => {
                       Email
                     </label>
                     <input
+                      name="email"
                       type="email"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                       placeholder="Email"
                       style={{ transition: "all .15s ease" }}
+                      ref={register({
+                        required: "Email harus dimasukkan!",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "format email belum betul",
+                        },
+                      })}
                     />
+                    {errors.email && (
+                      <div className="text-red-700 text-sm mt-1">
+                        {errors.email.message}
+                      </div>
+                    )}
                   </div>
 
                   <div className="relative w-full mb-3">
@@ -59,11 +96,24 @@ const Login = (props) => {
                     </div>
 
                     <input
+                      name="password"
                       type="password"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                       placeholder="Password"
                       style={{ transition: "all .15s ease" }}
+                      ref={register({
+                        required: "Password harus dimasukkan!",
+                        minLength: {
+                          value: 6,
+                          message: "Password minimal 6 karakter!",
+                        },
+                      })}
                     />
+                    {errors.password && (
+                      <div className="text-red-700 text-sm mt-1">
+                        {errors.password.message}
+                      </div>
+                    )}
                   </div>
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
@@ -82,7 +132,7 @@ const Login = (props) => {
                   <div className="text-center mt-6">
                     <button
                       className="bg-pink-600 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                      type="button"
+                      type="submit"
                       style={{ transition: "all .15s ease" }}
                     >
                       Masuk

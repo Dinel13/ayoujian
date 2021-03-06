@@ -78,6 +78,7 @@ export const siswaSignup = (email, password, name, setError, setIsLoading) => {
 };
 
 export const siswaLogin = (email, password, setError, setIsLoading) => {
+  console.log(email, password);
   return async (dispatch) => {
     setIsLoading(true);
     try {
@@ -143,6 +144,7 @@ export const guruSignup = (email, password, name, setError, setIsLoading) => {
 };
 
 export const guruLogin = (email, password, setError, setIsLoading) => {
+  console.log(email, password);
   return async (dispatch) => {
     setIsLoading(true);
     try {
