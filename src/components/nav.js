@@ -23,21 +23,11 @@ const Nav = () => {
   useEffect(() => {
     if (offset > 10) {
       header.current.classList.add("bg-white");
-      navAction.current.classList.remove("bg-white");
-      navAction.current.classList.add("gradient");
-      navAction.current.classList.remove("text-gray-800");
-      navAction.current.classList.add("text-black");
-      navAction.current.classList.add("bg-blue-500");
       header.current.classList.add("shadow");
       navContent.current.classList.remove("bg-gray-100");
       navContent.current.classList.add("bg-white");
     } else {
       header.current.classList.remove("bg-white");
-      navAction.current.classList.remove("gradient");
-      navAction.current.classList.remove("bg-blue-500");
-      navAction.current.classList.add("bg-white");
-      navAction.current.classList.remove("text-white");
-      navAction.current.classList.add("text-gray-800");
       header.current.classList.remove("shadow");
       navContent.current.classList.remove("bg-white");
       navContent.current.classList.add("bg-gray-100");
@@ -106,7 +96,7 @@ const Nav = () => {
           <ul className="list-reset lg:flex justify-center flex-1 items-center">
             <li className="mr-3">
               <Link
-                className="inline-block py-2 px-4 text-black font-bold no-underline"
+                className="inline-block py-2 px-4 text-gray-700 font-bold no-underline"
                 to="/guru"
               >
                 Guru
@@ -114,7 +104,7 @@ const Nav = () => {
             </li>
             <li className="mr-3">
               <Link
-                className="inline-block py-2 px-4 text-black font-bold no-underline"
+                className="inline-block py-2 px-4 text-gray-700 font-bold no-underline"
                 to="/pricing"
               >
                 Pricing
@@ -122,7 +112,7 @@ const Nav = () => {
             </li>
             <li className="mr-3">
               <Link
-                className="inline-block py-2 px-4 text-black font-bold no-underline"
+                className="inline-block py-2 px-4 text-gray-700 font-bold no-underline"
                 to="/bantuan"
               >
                 Bantuan
@@ -130,20 +120,18 @@ const Nav = () => {
             </li>
           </ul>
           <button
-            ref={navAction}
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0"
+            className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
             Daftar
           </button>
           <button
-            ref={navAction}
-            className="mx-auto lg:ml-3 lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
             Masuk
           </button>
         </div>
       </div>
-      <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
+      <hr className="border-b border-gray-300 opacity-30 my-0 py-0" />
     </nav>
   );
 };
