@@ -1,3 +1,5 @@
+import React, { useRef } from "react";
+
 import { Switch, Route } from "react-router-dom";
 
 import Footer from "./components/Footer";
@@ -21,14 +23,17 @@ const App = () => {
           <Keunggulan />
           <Pricing />
         </Route>
+        <Route path="/pricing" exact>
+          <Pricing  />
+        </Route>
         <Route path="/siswa/masuk" exact>
-          <Login from="siswa"/>
+          <Login from="siswa" />
         </Route>
         <Route path="/siswa/daftar" exact>
-          <Register from="siswa"/>
+          <Register from="siswa" />
         </Route>
         <Route path="/guru/masuk" exact>
-          <Login from="guru"/>
+          <Login from="guru" />
         </Route>
         <Route path="/guru/daftar" exact>
           <Register from="guru" />

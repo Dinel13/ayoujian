@@ -43,7 +43,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <svg
+      <div className="bg-pink-100"> <svg
         className="wave-top"
         viewBox="0 0 1439 147"
         version="1.1"
@@ -73,7 +73,8 @@ const Hero = () => {
             </g>
           </g>
         </g>
-      </svg>
+      </svg></div>
+     
     </>
   );
 };

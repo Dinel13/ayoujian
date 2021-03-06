@@ -101,9 +101,9 @@ const Nav = () => {
             <li className="mr-3">
               <Link
                 className="inline-block py-2 px-4 text-gray-700 font-bold no-underline"
-                to="/guru"
+                to="/"
               >
-                Guru
+                Beranda
               </Link>
             </li>
             <li className="mr-3">
