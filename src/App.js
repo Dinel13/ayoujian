@@ -8,7 +8,7 @@ import Pricing from "./components/Pricing";
 const App = () => {
   return (
     <>
-      <Nav />
+     <Nav />
       <Hero />
       <Pricing />
       <Footer />

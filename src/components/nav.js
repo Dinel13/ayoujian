@@ -1,17 +1,22 @@
-import React , {useRef, useEffect, useState}  from "react";
-import {Link} from 'react-router-dom';
+import React, { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [offset, setOffset] = useState(0);
+  const [targetHumberger, setTargetHumberger] = useState([]);
   const header = useRef();
   const navContent = useRef();
-  const navAction = useRef();
+  const navToggle = useRef();
+  const navAction = useRef([]);
 
-  //to get value of scrool
+  
   useEffect(() => {
+    //to get value of scrool
     window.onscroll = () => {
-      setOffset(window.pageYOffset)
-    }
+      setOffset(window.pageYOffset);
+    };
+    //to get the id of icon and out icon humberger
+    setTargetHumberger([document.getElementById("outIcon"), document.getElementById("menuIcon") ])
   }, []);
 
   //to change the nav if scroled
@@ -37,11 +42,38 @@ const Nav = () => {
       navContent.current.classList.remove("bg-white");
       navContent.current.classList.add("bg-gray-100");
     }
-  },[offset])
+  }, [offset]);
+
+  //to hide the modal when clicked outside the modal
+ useEffect(() => {
+    window.onclick = function (event) {
+      if (event.target === targetHumberger[0] || event.target === targetHumberger[1] ) {
+        if (navContent.current.classList.contains("hidden")) {
+          navContent.current.classList.add("hidden");
+        } else {
+          navContent.current.classList.remove("hidden");
+        }
+      } else {
+        navContent.current.classList.add("hidden");
+      }
+    };
+  }, [targetHumberger]);
+ 
+
+  //to show or hide togle button
+  const togleNavHandler = (e) => {
+        if (navContent.current.classList.contains("hidden")) {
+          navContent.current.classList.remove("hidden");
+        } else {
+          navContent.current.classList.add("hidden");
+        }
+  };
+
+  
 
   return (
-    <nav ref={header} className="fixed w-full z-30 top-0 text-white">
-      <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+    <nav ref={header}  className="fixed w-full z-30 top-0 text-white">
+      <div  className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="pl-4 flex items-center">
           <Link
             className="toggleColour text-black no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
@@ -52,16 +84,18 @@ const Nav = () => {
         </div>
         <div className="block lg:hidden pr-4">
           <button
-            id="nav-toggle"
+            ref={navToggle} 
+            onClick={togleNavHandler}
             className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
             <svg
               className="fill-current h-6 w-6"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
+              id="outIcon"
             >
               <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+              <path id="menuIcon" d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
         </div>
@@ -69,37 +103,43 @@ const Nav = () => {
           className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
           ref={navContent}
         >
-          <ul className="list-reset lg:flex justify-end flex-1 items-center">
+          <ul className="list-reset lg:flex justify-center flex-1 items-center">
             <li className="mr-3">
-              <a
+              <Link
                 className="inline-block py-2 px-4 text-black font-bold no-underline"
-                href="#"
+                to="/guru"
               >
-                Active
-              </a>
+                Guru
+              </Link>
             </li>
             <li className="mr-3">
-              <a
-                className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                href="#"
+              <Link
+                className="inline-block py-2 px-4 text-black font-bold no-underline"
+                to="/pricing"
               >
-                link
-              </a>
+                Pricing
+              </Link>
             </li>
             <li className="mr-3">
-              <a
-                className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                href="#"
+              <Link
+                className="inline-block py-2 px-4 text-black font-bold no-underline"
+                to="/bantuan"
               >
-                link
-              </a>
+                Bantuan
+              </Link>
             </li>
           </ul>
           <button
             ref={navAction}
-            className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0"
           >
-            Action
+            Daftar
+          </button>
+          <button
+            ref={navAction}
+            className="mx-auto lg:ml-3 lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          >
+            Masuk
           </button>
         </div>
       </div>
