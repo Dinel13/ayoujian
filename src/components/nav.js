@@ -9,14 +9,16 @@ const Nav = () => {
   const navToggle = useRef();
   const navAction = useRef([]);
 
-  
   useEffect(() => {
     //to get value of scrool
     window.onscroll = () => {
       setOffset(window.pageYOffset);
     };
     //to get the id of icon and out icon humberger
-    setTargetHumberger([document.getElementById("outIcon"), document.getElementById("menuIcon") ])
+    setTargetHumberger([
+      document.getElementById("outIcon"),
+      document.getElementById("menuIcon"),
+    ]);
   }, []);
 
   //to change the nav if scroled
@@ -35,9 +37,12 @@ const Nav = () => {
   }, [offset]);
 
   //to hide the modal when clicked outside the modal
- useEffect(() => {
+  useEffect(() => {
     window.onclick = function (event) {
-      if (event.target === targetHumberger[0] || event.target === targetHumberger[1] ) {
+      if (
+        event.target === targetHumberger[0] ||
+        event.target === targetHumberger[1]
+      ) {
         if (navContent.current.classList.contains("hidden")) {
           navContent.current.classList.add("hidden");
         } else {
@@ -48,22 +53,19 @@ const Nav = () => {
       }
     };
   }, [targetHumberger]);
- 
 
   //to show or hide togle button
   const togleNavHandler = (e) => {
-        if (navContent.current.classList.contains("hidden")) {
-          navContent.current.classList.remove("hidden");
-        } else {
-          navContent.current.classList.add("hidden");
-        }
+    if (navContent.current.classList.contains("hidden")) {
+      navContent.current.classList.remove("hidden");
+    } else {
+      navContent.current.classList.add("hidden");
+    }
   };
 
-  
-
   return (
-    <nav ref={header}  className="fixed w-full z-30 top-0 text-white">
-      <div  className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+    <nav ref={header} className="fixed w-full z-30 top-0 text-white">
+      <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="pl-4 flex items-center">
           <Link
             className="toggleColour text-black no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
@@ -74,7 +76,7 @@ const Nav = () => {
         </div>
         <div className="block lg:hidden pr-4">
           <button
-            ref={navToggle} 
+            ref={navToggle}
             onClick={togleNavHandler}
             className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
@@ -85,7 +87,10 @@ const Nav = () => {
               id="outIcon"
             >
               <title>Menu</title>
-              <path id="menuIcon" d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+              <path
+                id="menuIcon"
+                d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
+              />
             </svg>
           </button>
         </div>
@@ -119,14 +124,13 @@ const Nav = () => {
               </Link>
             </li>
           </ul>
-          <button
+          <Link
+            to="siswa/daftar"
             className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
             Daftar
-          </button>
-          <button
-            className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-          >
+          </Link>
+          <button className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Masuk
           </button>
         </div>

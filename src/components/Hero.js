@@ -24,13 +24,13 @@ const Hero = () => {
             </p>
             <div className="flex flex-col lg:flex-row w-full">
               <Link
-                to="/siswa/daftar"
+                to="/guru/daftar"
                 className=" bg-white text-gray-600 font-bold rounded-full my-3  py-4 px-5 border border-gray-200  shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
                 Daftar sebagai guru
               </Link>
               <Link
-                to="/guru/daftar"
+                to="/siswa/daftar"
                 className="lg:mx-2 bg-white text-gray-600 font-bold rounded-full my-3  py-4 px-5 border border-gray-200  shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
                 Daftar sebagai siswa

@@ -29135,6 +29135,14 @@ video {
   animation: bounce 1s infinite;
 }
 
+.st0 {
+  fill: "none";
+  stroke: "currentColor";
+  stroke-width: 20;
+  stroke-linecap: "round";
+  stroke-miterlimit: 3;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
