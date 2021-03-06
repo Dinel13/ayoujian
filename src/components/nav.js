@@ -7,7 +7,6 @@ const Nav = () => {
   const header = useRef();
   const navContent = useRef();
   const navToggle = useRef();
-  const navAction = useRef([]);
 
   useEffect(() => {
     //to get value of scrool
@@ -125,14 +124,16 @@ const Nav = () => {
             </li>
           </ul>
           <Link
-            to="siswa/daftar"
+            to="/siswa/daftar"
             className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
             Daftar
           </Link>
-          <button className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+          <Link
+            to="/siswa/masuk"
+            className="mx-auto lg:ml-3 lg:mx-0 border border-gray-500 bg-white text-gray-800 font-bold rounded-full mt-3 lg:mt-0 py-2 px-6 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Masuk
-          </button>
+          </Link>
         </div>
       </div>
       <hr className="border-b border-gray-300 opacity-30 my-0 py-0" />
