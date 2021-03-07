@@ -8,7 +8,7 @@ import back from "../image/back.svg";
 
 /*
 this componnet to login both for siswa or guru
-input props.from ? guru : siswa
+input props.from ? guru : siswa that get from path
 */
 
 const Login = (props) => {

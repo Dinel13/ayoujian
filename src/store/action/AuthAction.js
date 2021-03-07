@@ -47,6 +47,7 @@ export const AuthGuruWithData = (id, token, name, email) => {
 export const siswaSignup = (email, password, name, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
+    console.log(email, password, name);
     try {
       const response = await fetch("http://localhost:8080/api/siswa/signup", {
         method: "POST",
@@ -55,11 +56,10 @@ export const siswaSignup = (email, password, name, setError, setIsLoading) => {
         },
         body: JSON.stringify({email, password, name}),
       });
+
       const resData = await response.json();
-      if (resData.errors && resData.errors[0].status === 422) {
-        throw new Error(
-          "Validation failed. Make sure the email address isn't used yet!"
-        );
+      if (resData.errorMessage) {
+        throw new Error(resData.errorMessage)
       }
       dispatch(
         AuthSiswaWithData(
@@ -91,8 +91,8 @@ export const siswaLogin = (email, password, setError, setIsLoading) => {
         body: JSON.stringify({email, password}),
       });
       const resData = await response.json();
-      if (resData.errors) {
-        throw new Error(resData.errors[0].message);
+      if (resData.errorMessage) {
+        throw new Error(resData.errorMessage)
       }
       console.log(resData);
       dispatch(
@@ -125,10 +125,8 @@ export const guruSignup = (email, password, name, setError, setIsLoading) => {
         body: JSON.stringify({email, password, name}),
       });
       const resData = await response.json();
-      if (resData.errors && resData.errors[0].status === 422) {
-        throw new Error(
-          "Validation failed. Make sure the email address isn't used yet!"
-        );
+      if (resData.errorMessage) {
+        throw new Error(resData.errorMessage)
       }
       dispatch(
         AuthGuruWithData(
@@ -159,8 +157,8 @@ export const guruLogin = (email, password, setError, setIsLoading) => {
         body: JSON.stringify({email, password}),
       });
       const resData = await response.json();
-      if (resData.errors) {
-        throw new Error(resData.errors[0].message);
+      if (resData.errorMessage) {
+        throw new Error(resData.errorMessage)
       }
       dispatch(
         AuthGuruWithData(
