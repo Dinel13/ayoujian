@@ -13,8 +13,7 @@ const signup = async (req, res, next) => {
     );
   }
 
-  const { name, email, password } = req.body;
-
+  const { email, password, name } = req.body;
   let existingSiswa;
   try {
     existingSiswa = await Siswa.findOne({ email: email });
@@ -76,14 +75,12 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res
-    .status(201)
-    .json({
-      _id: createdSiswa.id,
-      token: token,
-      name: createdSiswa.name,
-      email: createdSiswa.email,
-    });
+  res.status(201).json({
+    _id: createdSiswa.id,
+    token: token,
+    name: createdSiswa.name,
+    email: createdSiswa.email,
+  });
 };
 
 const login = async (req, res, next) => {
@@ -131,7 +128,7 @@ const login = async (req, res, next) => {
   let token;
   try {
     token = jwt.sign(
-      {_id: existingSiswa.id, email: existingSiswa.email, role:"siswa" },
+      { _id: existingSiswa.id, email: existingSiswa.email, role: "siswa" },
       "supersecret_dont_share",
       { expiresIn: "1h" }
     );
@@ -143,14 +140,12 @@ const login = async (req, res, next) => {
     return next(error);
   }
 
-  res
-    .status(200)
-    .json({
-      _id: existingSiswa.id,
-      token: token,
-      name: existingSiswa.name,
-      email: existingSiswa.email,
-    });
+  res.status(200).json({
+    _id: existingSiswa.id,
+    token: token,
+    name: existingSiswa.name,
+    email: existingSiswa.email,
+  });
 };
 
 exports.signup = signup;
