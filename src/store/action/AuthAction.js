@@ -47,7 +47,6 @@ export const AuthGuruWithData = (id, token, name, email) => {
 export const siswaSignup = (email, password, name, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
-    console.log(email, password, name);
     try {
       const response = await fetch("http://localhost:8080/api/siswa/signup", {
         method: "POST",
@@ -94,7 +93,6 @@ export const siswaLogin = (email, password, setError, setIsLoading) => {
       if (resData.errorMessage) {
         throw new Error(resData.errorMessage)
       }
-      console.log(resData);
       dispatch(
         AuthSiswaWithData(
           resData._id,
@@ -130,16 +128,17 @@ export const guruSignup = (email, password, name, setError, setIsLoading) => {
       }
       dispatch(
         AuthGuruWithData(
-          resData.data.createUser._id,
-          resData.data.createUser.token,
-          resData.data.createUser.name,
-          resData.data.createUser.email
+          resData._id,
+          resData.token,
+          resData.name,
+          resData.email
         )
       );
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
       setError(err.message);
+      console.log(err);
     }
   };
 };
@@ -149,8 +148,8 @@ export const guruLogin = (email, password, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8081/api/guru/login", {
-        method: "GET",
+      const response = await fetch("http://localhost:8080/api/guru/login", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -162,16 +161,17 @@ export const guruLogin = (email, password, setError, setIsLoading) => {
       }
       dispatch(
         AuthGuruWithData(
-          resData.data.login._id,
-          resData.data.login.token,
-          resData.data.login.name,
-          resData.data.login.email
+          resData._id,
+          resData.token,
+          resData.name,
+          resData.email
         )
       );
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
       setError(err.message);
+      console.log(err);
     }
   };
 };
