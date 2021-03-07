@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const HttpError = require("./models/http-error");
 const siswaRoutes = require("./routes/siswa-routes");
+const guruRoutes = require("./routes/guru-routes");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/siswa", siswaRoutes);
+app.use("/api/guru", guruRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);
