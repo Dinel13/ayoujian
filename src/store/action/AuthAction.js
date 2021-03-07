@@ -48,7 +48,7 @@ export const siswaSignup = (email, password, name, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/siswa/daftar", {
+      const response = await fetch("http://localhost:8080/api/siswa/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,16 +63,17 @@ export const siswaSignup = (email, password, name, setError, setIsLoading) => {
       }
       dispatch(
         AuthSiswaWithData(
-          resData.data.createUser._id,
-          resData.data.createUser.token,
-          resData.data.createUser.name,
-          resData.data.createUser.email
+          resData._id,
+          resData.token,
+          resData.name,
+          resData.email
         )
       );
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
       setError(err.message);
+      console.log(err);
     }
   };
 };
@@ -82,8 +83,8 @@ export const siswaLogin = (email, password, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8081/api/siswa/masuk", {
-        method: "GET",
+      const response = await fetch("http://localhost:8080/api/siswa/login", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -93,18 +94,20 @@ export const siswaLogin = (email, password, setError, setIsLoading) => {
       if (resData.errors) {
         throw new Error(resData.errors[0].message);
       }
+      console.log(resData);
       dispatch(
         AuthSiswaWithData(
-          resData.data.login._id,
-          resData.data.login.token,
-          resData.data.login.name,
-          resData.data.login.email
+          resData._id,
+          resData.token,
+          resData.name,
+          resData.email
         )
       );
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
       setError(err.message);
+      console.log(err);
     }
   };
 };
@@ -114,7 +117,7 @@ export const guruSignup = (email, password, name, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/guru/daftar", {
+      const response = await fetch("http://localhost:8080/api/guru/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,7 +151,7 @@ export const guruLogin = (email, password, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8081/api/guru/masuk", {
+      const response = await fetch("http://localhost:8081/api/guru/login", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
