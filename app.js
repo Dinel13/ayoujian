@@ -1,6 +1,8 @@
 const express = require("express");
+const io = require("socket.io")
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const {v4 : uuidV4 } = require("uuid")
 
 const HttpError = require("./models/http-error");
 const siswaRoutes = require("./routes/siswa-routes");
@@ -48,6 +50,6 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(8080);
+    app.listen(8082);
   })
   .catch((err) => console.log(err));
