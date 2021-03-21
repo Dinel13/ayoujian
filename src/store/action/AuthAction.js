@@ -49,7 +49,7 @@ export const siswaSignup = (email, password, name, setError, setIsLoading) => {
     setIsLoading(true);
     console.log(email, password, name);
     try {
-      const response = await fetch("http://localhost:8080/api/siswa/signup", {
+      const response = await fetch("http://47.254.192.86:86/api/siswa/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const siswaLogin = (email, password, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/siswa/login", {
+      const response = await fetch("http://47.254.192.86:86/api/siswa/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export const guruSignup = (email, password, name, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/guru/signup", {
+      const response = await fetch("http://47.254.192.86:86/api/guru/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -149,7 +149,7 @@ export const guruLogin = (email, password, setError, setIsLoading) => {
   return async (dispatch) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8081/api/guru/login", {
+      const response = await fetch("http://47.254.192.86:86/api/guru/login", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

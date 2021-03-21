@@ -21,7 +21,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          cd /var/www/Karang-taruna-topandang
+          cd /var/www/ujianf
           git pull origin main-frontend
           npm install
           npm run build
