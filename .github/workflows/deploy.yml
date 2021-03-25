@@ -23,5 +23,3 @@ jobs:
         script: |
           cd /var/www/ujianf
           git pull origin main-frontend
-          npm install
-          npm run build
